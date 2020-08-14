@@ -7,7 +7,7 @@ import HomePage from './pages/homepage/homepage.component'
 import ShopPage from './pages/shop/shop.component'
 import Authentication from './pages/authentication/authentication.component'
 import Header from './components/header/header.component'
-import { auth, createdUserProfileDocument } from './firebase/firebase.utils'
+import { auth, createUserProfileDocument } from './firebase/firebase.utils'
 
 class App extends Component {
   constructor(props) {
@@ -26,7 +26,7 @@ class App extends Component {
       // check if correctly sign in
       if (userAuth) {
         // save the logged user in app state
-        const userRef = await createdUserProfileDocument(userAuth)
+        const userRef = await createUserProfileDocument(userAuth)
         userRef.onSnapshot(snapshot => {
           this.setState({
             currentUser: {
@@ -34,6 +34,7 @@ class App extends Component {
               ...snapshot.data()
             }
           })
+          console.log(this.state)
         })
       } else {
         // userAuth in this is is equivalent to null
