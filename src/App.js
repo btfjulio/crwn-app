@@ -40,6 +40,7 @@ class App extends Component {
   }
 
   render() {
+    const currentUser = this.props
     return (
       <div>
         <Header />
@@ -47,7 +48,7 @@ class App extends Component {
           <Route exact path='/' component={HomePage} />
           <Route exact path='/shop' component={ShopPage} />
           <Route exact path='/signin' render={() => (
-            this.props.currentUser ? (<Redirect to='/' />) : (<Authentication />)
+            currentUser ? (<Redirect to='/' />) : (<Authentication />)
           )} />
         </Switch>
       </div>
@@ -55,9 +56,9 @@ class App extends Component {
   }
 }
 
-const mapStateToProps = ({ user }) => ({
+const mapStateToProps = ({ user: { currentUser } }) => ({
   // will add this.props.user to App Component
-  currentUser: user.currentUser,
+  currentUser
 });
 
 const mapDispatchToProps = dispatch => ({
