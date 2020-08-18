@@ -2,7 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 import "./cart-icon.styles.scss";
 
-import toggleCartActive from "../../redux/cart/cart.action";
+import { toggleCartActive } from "../../redux/cart/cart.action";
 
 import { ReactComponent as ShoppingIcon } from "../../assets/shopping-bag.svg";
 
@@ -14,7 +14,7 @@ const CartIcon = ({ toggleCartActive }) => (
 );
 
 const mapDispatchToCart = (dispatch) => ({
-  toggleCartActive: () => dispatch(toggleCartActive())
+  toggleCartActive: () => dispatch(toggleCartActive()),
 });
 
 export default connect(null, mapDispatchToCart)(CartIcon);
