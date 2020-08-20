@@ -4,6 +4,10 @@ import { connect } from "react-redux";
 import CartIcon from "../cart-icon/cart-icon.component";
 import CartDropdown from "../cart-dropdown/cart-dropdown.component";
 import { auth } from "../../firebase/firebase.utils";
+import { createStructuredSelector } from "reselect";
+
+import { selectCartActive } from "../../redux/cart/cart.selector";
+import { selectCurrentUser } from "../../redux/user/user.selector";
 
 import { ReactComponent as Logo } from "../../assets/crown.svg";
 import "./header.styles.scss";
@@ -31,13 +35,13 @@ const Header = ({ currentUser, active }) => (
       )}
       <CartIcon />
     </div>
-    { active && <CartDropdown /> }
+    {active && <CartDropdown />}
   </div>
 );
 
-const mapStateToProps = ({ user: { currentUser }, cart: { active } }) => ({
-  currentUser,
-  active,
+const mapStateToProps = createStructuredSelector({
+  active: selectCartActive,
+  currentUser: selectCurrentUser,
 });
 
 export default connect(mapStateToProps)(Header);
