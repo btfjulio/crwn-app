@@ -8,7 +8,6 @@ const Authentication = () => (
   <div className="athentication">
     <SignIn />
     <SignUp />
-
   </div>
 
 );
